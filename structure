@@ -1,0 +1,96 @@
+RiskLensAI/
+│
+├── README.md
+├── requirements.txt
+├── .gitignore
+│
+├── data/
+│   ├── raw/
+│   │   ├── uci/
+│   │   │   └── default_credit.xls
+│   │   └── lending_club/
+│   │       └── loan.csv
+│   │
+│   ├── uci/
+│   │   ├── loader.py
+│   │   ├── feature_mapper.py
+│   │   ├── label_mapper.py
+│   │   └── data_dictionary.md
+│   │
+│   └── lending_club/
+│       ├── loader.py
+│       ├── feature_mapper.py
+│       ├── label_mapper.py
+│       └── data_dictionary.md
+│
+├── notebooks/
+│   ├── 00_problem_framing.ipynb
+│
+│   ├── 01_uci_data_loading.ipynb
+│   ├── 02_uci_eda.ipynb
+│   ├── 03_feature_engineering.ipynb
+│   ├── 04_data_quality_checks.ipynb
+│
+│   ├── 05_logistic_regression_baseline.ipynb
+│   ├── 06_tree_models_comparison.ipynb
+│   ├── 07_model_evaluation_metrics.ipynb
+│
+│   ├── 08_shap_global_explainability.ipynb
+│   ├── 09_shap_local_explainability.ipynb
+│
+│   ├── 10_reliability_and_confidence.ipynb
+│
+│   ├── 11_refactor_to_modules.ipynb
+│
+│   └── 12_cross_dataset_validation_lending_club.ipynb
+│
+├── core/
+│   ├── schema.py
+│   ├── preprocessing.py
+│   ├── validation.py
+│   └── splits.py
+│
+├── models/
+│   ├── classical/
+│   │   ├── logistic.py
+│   │   ├── random_forest.py
+│   │   └── gradient_boosting.py
+│   │
+│   ├── neural/
+│   │   └── mlp.py
+│   │
+│   └── model_registry.py
+│
+├── explainability/
+│   └── shap_engine.py
+│
+├── reliability/
+│   ├── data_quality.py
+│   ├── drift.py
+│   └── confidence.py
+│
+├── experiments/
+│   ├── uci_experiment/
+│   │   ├── metrics.json
+│   │   └── notes.md
+│   │
+│   └── lending_club_experiment/
+│       ├── metrics.json
+│       └── notes.md
+│
+├── api/
+│   ├── main.py
+│   ├── schemas.py
+│   └── routes/
+│       ├── predict.py
+│       ├── explain.py
+│       └── quality.py
+│
+├── rag/
+│   ├── ingest.py
+│   ├── retriever.py
+│   ├── prompts.py
+│   └── policy_docs/
+│
+└── dashboard/
+    └── nextjs-app/
