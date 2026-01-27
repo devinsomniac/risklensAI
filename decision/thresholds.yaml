@@ -1,0 +1,3 @@
+approve_max: 0.20
+review_max: 0.40
+# reject is anything > review_max
