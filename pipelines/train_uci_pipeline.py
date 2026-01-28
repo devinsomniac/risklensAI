@@ -1,6 +1,5 @@
 from __future__ import annotations
-import sys,os
-sys.path.append(os.path.abspath(".."))
+
 #To save my artificate
 import joblib
 #To make my dataset divide for train and test

@@ -17,7 +17,7 @@ from sklearn.metrics import brier_score_loss,log_loss
 from pipelines.uci_pipeline import build_uci_gb_pipeline
 
 #Calibrator package
-from sklearn.calibration import CalibratedClassifierCV,calibration_curve
+from sklearn.calibration import CalibratedClassifierCV
 from sklearn.frozen import FrozenEstimator
 
 #Visualization
