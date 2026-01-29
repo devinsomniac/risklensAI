@@ -39,7 +39,7 @@ class ApplicantUCI(BaseModel):
 class ScoreRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     applicant :ApplicantUCI
-    include_explanations : bool = False
+    include_explanations : bool = True
 
 #Explanation like what feature and how much did it effect
 class ExplanationItem(BaseModel):

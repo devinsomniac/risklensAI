@@ -3,7 +3,7 @@ import pandas as pd
 import os
 #For saving artifacts
 import joblib
-
+import shap
 #Data Loader package
 from data.uci.loader import load_uci_data
 from data.uci.feature_mapper import map_uci_features
@@ -43,7 +43,10 @@ def main()->None:
     #From temporary set , we will again divide 2 into cal and test
     X_train,X_temp,y_train,y_temp = train_test_split(X_raw,y,random_state=42,test_size=0.3,stratify=y)
     X_cal,X_test,y_cal,y_test = train_test_split(X_temp,y_temp,random_state=42,test_size=0.50,stratify=y_temp)
-
+    
+    X_bg = X_train.sample(n=200,random_state=42)
+    joblib.dump(X_bg,"models/shap_background.joblib")
+    print("Saved SHAP background -> models/shap_background.joblib")
     #Training on my base model
     base_pipe = build_uci_gb_pipeline(random_state=42)
     base_pipe.fit(X_train,y_train)
