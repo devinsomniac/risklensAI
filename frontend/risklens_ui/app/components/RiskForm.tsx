@@ -83,7 +83,7 @@ const RiskForm = () => {
 
                 </div>
                 {/* Repayment Status */}
-                <div>
+                <div className="mt-4">
                     {/* Repayment status */}
                     <h2 className='font-bold text-[#003d5c]'>Repayment Status (months delay)</h2>
                     <hr />
@@ -230,7 +230,68 @@ const RiskForm = () => {
 
 
                 </div>
-                
+                {/* Bill Statement Amounts (£) */}
+                <div className="mt-4">
+                    <h2 className='font-bold text-[#003d5c]'>Bill Statement Amounts (£)</h2>
+                    <hr />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2">
+                        <Field>
+                            <FieldLabel htmlFor="bill_amt_sept">Bill Amount - September</FieldLabel>
+                            <Input id="bill_amt_sept" placeholder="e.g., 2100" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="bill_amt_aug">Bill Amount - August</FieldLabel>
+                            <Input id="bill_amt_aug" placeholder="e.g., 3200" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="bill_amt_jul">Bill Amount - July</FieldLabel>
+                            <Input id="bill_amt_jul" placeholder="e.g., 2900" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="bill_amt_jun">Bill Amount - June</FieldLabel>
+                            <Input id="bill_amt_jun" placeholder="e.g., 3100" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="bill_amt_may">Bill Amount - May</FieldLabel>
+                            <Input id="bill_amt_may" placeholder="e.g., 3200" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="bill_amt_apr">Bill Amount - April</FieldLabel>
+                            <Input id="bill_amt_apr" placeholder="e.g., 3100" />
+                        </Field>
+                    </div>
+                </div>
+                {/* Bill Statement Amounts (£) */}
+                <div className="mt-4">
+                    <h2 className='font-bold text-[#003d5c]'>Previous Payment Amounts (£)</h2>
+                    <hr />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2">
+                        <Field>
+                            <FieldLabel htmlFor="pay_amt_sept">Previous Amount - September</FieldLabel>
+                            <Input id="pay_amt_sept" placeholder="e.g., 2100" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="pay_amt_aug">Previous Amount - August</FieldLabel>
+                            <Input id="pay_amt_aug" placeholder="e.g., 3200" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="pay_amt_jul">Previous Amount - July</FieldLabel>
+                            <Input id="pay_amt_jul" placeholder="e.g., 2900" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="pay_amt_jun">Previous Amount - June</FieldLabel>
+                            <Input id="pay_amt_jun" placeholder="e.g., 3100" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="pay_amt_may">Previous Amount - May</FieldLabel>
+                            <Input id="pay_amt_may" placeholder="e.g., 3200" />
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="pay_amt_apr">Previous Amount - April</FieldLabel>
+                            <Input id="pay_amt_apr" placeholder="e.g., 3100" />
+                        </Field>
+                    </div>
+                </div>
             </div>
         </div>
     )
