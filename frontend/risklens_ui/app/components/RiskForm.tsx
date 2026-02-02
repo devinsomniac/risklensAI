@@ -19,6 +19,7 @@ const RiskForm = () => {
             <hr className='h-0.5 bg-[#003d5c] border-0' />
             {/* Form Div */}
             <div className='p-4'>
+                {/* Demographic form */}
                 <div>
                     <h2 className='font-bold text-[#003d5c]'>Basic Demographics</h2>
                     <hr />
@@ -81,7 +82,155 @@ const RiskForm = () => {
 
 
                 </div>
+                {/* Repayment Status */}
+                <div>
+                    {/* Repayment status */}
+                    <h2 className='font-bold text-[#003d5c]'>Repayment Status (months delay)</h2>
+                    <hr />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2">
+                        <Field>
+                            <FieldLabel htmlFor="repayment_status_sept">Repayment Status - September</FieldLabel>
+                            <Select>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
+                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
+                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
+                                        <SelectItem value="one">1 month Delay</SelectItem>
+                                        <SelectItem value="one">2 months Delay</SelectItem>
+                                        <SelectItem value="one">3 months Delay</SelectItem>
+                                        <SelectItem value="one">4 months Delay</SelectItem>
+                                        <SelectItem value="one">5 months Delay</SelectItem>
+                                        <SelectItem value="one">6 months Delay</SelectItem>
+                                        <SelectItem value="one">7 months Delay</SelectItem>
+                                        <SelectItem value="one">8 months Delay</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="repayment_status_sept">Repayment Status - August</FieldLabel>
+                            <Select>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
+                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
+                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
+                                        <SelectItem value="one">1 month Delay</SelectItem>
+                                        <SelectItem value="one">2 months Delay</SelectItem>
+                                        <SelectItem value="one">3 months Delay</SelectItem>
+                                        <SelectItem value="one">4 months Delay</SelectItem>
+                                        <SelectItem value="one">5 months Delay</SelectItem>
+                                        <SelectItem value="one">6 months Delay</SelectItem>
+                                        <SelectItem value="one">7 months Delay</SelectItem>
+                                        <SelectItem value="one">8 months Delay</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="repayment_status_sept">Repayment Status - July</FieldLabel>
+                            <Select>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
+                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
+                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
+                                        <SelectItem value="one">1 month Delay</SelectItem>
+                                        <SelectItem value="one">2 months Delay</SelectItem>
+                                        <SelectItem value="one">3 months Delay</SelectItem>
+                                        <SelectItem value="one">4 months Delay</SelectItem>
+                                        <SelectItem value="one">5 months Delay</SelectItem>
+                                        <SelectItem value="one">6 months Delay</SelectItem>
+                                        <SelectItem value="one">7 months Delay</SelectItem>
+                                        <SelectItem value="one">8 months Delay</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="repayment_status_sept">Repayment Status - June</FieldLabel>
+                            <Select>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
+                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
+                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
+                                        <SelectItem value="one">1 month Delay</SelectItem>
+                                        <SelectItem value="one">2 months Delay</SelectItem>
+                                        <SelectItem value="one">3 months Delay</SelectItem>
+                                        <SelectItem value="one">4 months Delay</SelectItem>
+                                        <SelectItem value="one">5 months Delay</SelectItem>
+                                        <SelectItem value="one">6 months Delay</SelectItem>
+                                        <SelectItem value="one">7 months Delay</SelectItem>
+                                        <SelectItem value="one">8 months Delay</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="repayment_status_sept">Repayment Status - May</FieldLabel>
+                            <Select>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
+                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
+                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
+                                        <SelectItem value="one">1 month Delay</SelectItem>
+                                        <SelectItem value="one">2 months Delay</SelectItem>
+                                        <SelectItem value="one">3 months Delay</SelectItem>
+                                        <SelectItem value="one">4 months Delay</SelectItem>
+                                        <SelectItem value="one">5 months Delay</SelectItem>
+                                        <SelectItem value="one">6 months Delay</SelectItem>
+                                        <SelectItem value="one">7 months Delay</SelectItem>
+                                        <SelectItem value="one">8 months Delay</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="repayment_status_sept">Repayment Status - April</FieldLabel>
+                            <Select>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
+                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
+                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
+                                        <SelectItem value="one">1 month Delay</SelectItem>
+                                        <SelectItem value="one">2 months Delay</SelectItem>
+                                        <SelectItem value="one">3 months Delay</SelectItem>
+                                        <SelectItem value="one">4 months Delay</SelectItem>
+                                        <SelectItem value="one">5 months Delay</SelectItem>
+                                        <SelectItem value="one">6 months Delay</SelectItem>
+                                        <SelectItem value="one">7 months Delay</SelectItem>
+                                        <SelectItem value="one">8 months Delay</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                        </Field>
+                    </div>
 
+
+                </div>
+                
             </div>
         </div>
     )
