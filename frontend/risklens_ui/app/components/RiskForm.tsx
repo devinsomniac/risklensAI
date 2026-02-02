@@ -10,6 +10,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 const RiskForm = () => {
@@ -292,6 +293,10 @@ const RiskForm = () => {
                         </Field>
                     </div>
                 </div>
+                <div className="flex justify-center">
+                    <Button variant="default" className="bg-[#003d5c] w-[250px] mt-5 font-bold">Calculate Risk Score</Button>
+                </div>
+
             </div>
         </div>
     )
