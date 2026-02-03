@@ -1,3 +1,5 @@
+"use client"
+import { useState } from "react"
 import {
     Field,
     FieldLabel,
@@ -14,6 +16,70 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 const RiskForm = () => {
+    const [form, setForm] = useState({
+        LIMIT_BAL: "",
+        SEX: "",
+        EDUCATION: "",
+        MARRIAGE: "",
+        AGE: "",
+
+        PAY_0: "",
+        PAY_2: "",
+        PAY_3: "",
+        PAY_4: "",
+        PAY_5: "",
+        PAY_6: "",
+
+        BILL_AMT1: "",
+        BILL_AMT2: "",
+        BILL_AMT3: "",
+        BILL_AMT4: "",
+        BILL_AMT5: "",
+        BILL_AMT6: "",
+
+        PAY_AMT1: "",
+        PAY_AMT2: "",
+        PAY_AMT3: "",
+        PAY_AMT4: "",
+        PAY_AMT5: "",
+        PAY_AMT6: "",
+    })
+
+    const PayStatusSelect = ({
+        value,
+        onChange,
+    }: {
+        value: string
+        onChange: (v: string) => void
+    }) => (
+        <Select value={value} onValueChange={onChange}>
+            <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Status" />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectGroup>
+                    <SelectItem value="-2">No Consumption</SelectItem>
+                    <SelectItem value="-1">Pay Duly</SelectItem>
+                    <SelectItem value="0">Revolving Credit</SelectItem>
+                    <SelectItem value="1">1 month Delay</SelectItem>
+                    <SelectItem value="2">2 months Delay</SelectItem>
+                    <SelectItem value="3">3 months Delay</SelectItem>
+                    <SelectItem value="4">4 months Delay</SelectItem>
+                    <SelectItem value="5">5 months Delay</SelectItem>
+                    <SelectItem value="6">6 months Delay</SelectItem>
+                    <SelectItem value="7">7 months Delay</SelectItem>
+                    <SelectItem value="8">8 months Delay</SelectItem>
+                </SelectGroup>
+            </SelectContent>
+        </Select>
+    )
+
+
+
+    const setField = (key: keyof typeof form, value: string) => {
+        setForm((prev) => ({ ...prev, [key]: value }))
+    }
+
     return (
         <div className='p-2 md:p-3 bg-white border-2 border-gray-500'>
             <h1 className='font-bold text-[#003d5c] text-2xl'>Customer Credit Information</h1>
@@ -27,57 +93,71 @@ const RiskForm = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2">
                         <Field>
                             <FieldLabel htmlFor="Credit_Limit">Credit Limit (£)</FieldLabel>
-                            <Input id="credit_limit" placeholder="e.g., 50000" />
+                            <Input
+                                id="credit_limit"
+                                type="number"
+                                placeholder="e.g., 50000"
+                                value={form.LIMIT_BAL}
+                                onChange={(e) => setField("LIMIT_BAL", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="Gender">Gender (£)</FieldLabel>
-                            <Select>
+                            <Select value={form.SEX} onValueChange={(v) => setField("SEX", v)}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Gender" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        <SelectItem value="light">Male</SelectItem>
-                                        <SelectItem value="dark">Female</SelectItem>
+                                        <SelectItem value="1">Male</SelectItem>
+                                        <SelectItem value="2">Female</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+
+
+                        </Field>
+                        <Field>
+                            <FieldLabel htmlFor="Educatiom">Edication label</FieldLabel>
+                            <Select value={form.EDUCATION} onValueChange={(v) => setField("EDUCATION", v)}>
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Education" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectGroup>
+                                        <SelectItem value="1">Graduate School</SelectItem>
+                                        <SelectItem value="2">University</SelectItem>
+                                        <SelectItem value="3">High School</SelectItem>
+                                        <SelectItem value="4">Others</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
 
                         </Field>
                         <Field>
-                            <FieldLabel htmlFor="Educatiom">Edication label</FieldLabel>
-                            <Select>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Education" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectItem value="graduate_school">Graduate School</SelectItem>
-                                        <SelectItem value="university">University</SelectItem>
-                                        <SelectItem value="high_school">High School</SelectItem>
-                                        <SelectItem value="others">others</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        </Field>
-                        <Field>
                             <FieldLabel htmlFor="Marraige">Marital Status</FieldLabel>
-                            <Select>
+                            <Select value={form.MARRIAGE} onValueChange={(v) => setField("MARRIAGE", v)}>
                                 <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Select Status" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectGroup>
-                                        <SelectItem value="married">Married</SelectItem>
-                                        <SelectItem value="single">Single</SelectItem>
-                                        <SelectItem value="others">others</SelectItem>
+                                        <SelectItem value="1">Married</SelectItem>
+                                        <SelectItem value="2">Single</SelectItem>
+                                        <SelectItem value="3">Others</SelectItem>
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="age">Age</FieldLabel>
-                            <Input id="age" placeholder="e.g., 45" />
+                            <Input
+                                id="age"
+                                type="number"
+                                placeholder="e.g., 45"
+                                value={form.AGE}
+                                onChange={(e) => setField("AGE", e.target.value)}
+                            />
                         </Field>
                     </div>
 
@@ -91,145 +171,35 @@ const RiskForm = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2">
                         <Field>
                             <FieldLabel htmlFor="repayment_status_sept">Repayment Status - September</FieldLabel>
-                            <Select>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Status" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
-                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
-                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
-                                        <SelectItem value="one">1 month Delay</SelectItem>
-                                        <SelectItem value="one">2 months Delay</SelectItem>
-                                        <SelectItem value="one">3 months Delay</SelectItem>
-                                        <SelectItem value="one">4 months Delay</SelectItem>
-                                        <SelectItem value="one">5 months Delay</SelectItem>
-                                        <SelectItem value="one">6 months Delay</SelectItem>
-                                        <SelectItem value="one">7 months Delay</SelectItem>
-                                        <SelectItem value="one">8 months Delay</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
+                            <PayStatusSelect
+                                value={form.PAY_0}
+                                onChange={(v) => setField("PAY_0", v)}
+                            />
+
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="repayment_status_sept">Repayment Status - August</FieldLabel>
-                            <Select>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Status" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
-                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
-                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
-                                        <SelectItem value="one">1 month Delay</SelectItem>
-                                        <SelectItem value="one">2 months Delay</SelectItem>
-                                        <SelectItem value="one">3 months Delay</SelectItem>
-                                        <SelectItem value="one">4 months Delay</SelectItem>
-                                        <SelectItem value="one">5 months Delay</SelectItem>
-                                        <SelectItem value="one">6 months Delay</SelectItem>
-                                        <SelectItem value="one">7 months Delay</SelectItem>
-                                        <SelectItem value="one">8 months Delay</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
+                            <PayStatusSelect value={form.PAY_2} onChange={(v) => setField("PAY_2", v)} />
+
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="repayment_status_sept">Repayment Status - July</FieldLabel>
-                            <Select>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Status" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
-                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
-                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
-                                        <SelectItem value="one">1 month Delay</SelectItem>
-                                        <SelectItem value="one">2 months Delay</SelectItem>
-                                        <SelectItem value="one">3 months Delay</SelectItem>
-                                        <SelectItem value="one">4 months Delay</SelectItem>
-                                        <SelectItem value="one">5 months Delay</SelectItem>
-                                        <SelectItem value="one">6 months Delay</SelectItem>
-                                        <SelectItem value="one">7 months Delay</SelectItem>
-                                        <SelectItem value="one">8 months Delay</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
+                            <PayStatusSelect value={form.PAY_3} onChange={(v) => setField("PAY_3", v)} />
+
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="repayment_status_sept">Repayment Status - June</FieldLabel>
-                            <Select>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Status" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
-                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
-                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
-                                        <SelectItem value="one">1 month Delay</SelectItem>
-                                        <SelectItem value="one">2 months Delay</SelectItem>
-                                        <SelectItem value="one">3 months Delay</SelectItem>
-                                        <SelectItem value="one">4 months Delay</SelectItem>
-                                        <SelectItem value="one">5 months Delay</SelectItem>
-                                        <SelectItem value="one">6 months Delay</SelectItem>
-                                        <SelectItem value="one">7 months Delay</SelectItem>
-                                        <SelectItem value="one">8 months Delay</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
+                            <PayStatusSelect value={form.PAY_4} onChange={(v) => setField("PAY_4", v)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="repayment_status_sept">Repayment Status - May</FieldLabel>
-                            <Select>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Status" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
-                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
-                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
-                                        <SelectItem value="one">1 month Delay</SelectItem>
-                                        <SelectItem value="one">2 months Delay</SelectItem>
-                                        <SelectItem value="one">3 months Delay</SelectItem>
-                                        <SelectItem value="one">4 months Delay</SelectItem>
-                                        <SelectItem value="one">5 months Delay</SelectItem>
-                                        <SelectItem value="one">6 months Delay</SelectItem>
-                                        <SelectItem value="one">7 months Delay</SelectItem>
-                                        <SelectItem value="one">8 months Delay</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
+                            <PayStatusSelect value={form.PAY_5} onChange={(v) => setField("PAY_5", v)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="repayment_status_sept">Repayment Status - April</FieldLabel>
-                            <Select>
-                                <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Status" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectItem value="No_consumption">No Consumption</SelectItem>
-                                        <SelectItem value="pay_duly">Pay Duly</SelectItem>
-                                        <SelectItem value="revolving_credit">Revolving Credit</SelectItem>
-                                        <SelectItem value="one">1 month Delay</SelectItem>
-                                        <SelectItem value="one">2 months Delay</SelectItem>
-                                        <SelectItem value="one">3 months Delay</SelectItem>
-                                        <SelectItem value="one">4 months Delay</SelectItem>
-                                        <SelectItem value="one">5 months Delay</SelectItem>
-                                        <SelectItem value="one">6 months Delay</SelectItem>
-                                        <SelectItem value="one">7 months Delay</SelectItem>
-                                        <SelectItem value="one">8 months Delay</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
+                            <PayStatusSelect value={form.PAY_6} onChange={(v) => setField("PAY_6", v)} />
                         </Field>
                     </div>
-
-
                 </div>
                 {/* Bill Statement Amounts (£) */}
                 <div className="mt-4">
