@@ -1,6 +1,6 @@
 type ShapReason = {
   feature: string;
-  impact: number; // positive = higher risk
+  impact: number; // 
 };
 
 export function ShapReasons({ reasons }: { reasons: ShapReason[] }) {
