@@ -7,7 +7,7 @@ from api.schemas import ScoreRequest ,ScoreResponse,Explanation,ExplanationItem
 from api.dependencies import load_models,get_model,get_base_model,get_shap_background
 from explain.shap_explainer import ShapExplainer
 from decision.engine import load_thresholds,decide
-from data.uci.loader import load_uci_data
+
 
 decision_cfg = None
 shap_explainer: ShapExplainer | None = None
