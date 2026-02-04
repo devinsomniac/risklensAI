@@ -19,10 +19,18 @@ __pycache__/
 .ipynb_checkpoints/
 
 # =========================
-# Data (DO NOT COMMIT DATA)
+# Data (IGNORE RAW DATA ONLY)
 # =========================
-data/
-data/**
+
+# Ignore raw datasets
+data/raw/
+data/**/raw/
+
+# Optional: ignore dataset file types anywhere
+*.xls
+*.xlsx
+*.csv
+*.parquet
 
 # =========================
 # Models / Artifacts
