@@ -15,7 +15,17 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
-const RiskForm = () => {
+const RiskForm = ({
+    setAssessment,
+    setLoading,
+    setError,
+    loading
+}: {
+    setAssessment: (data: any) => void
+    setLoading: (v: boolean) => void
+    setError: (v: string | null) => void
+    loading : boolean
+}) => {
     const [form, setForm] = useState({
         LIMIT_BAL: "",
         SEX: "",
@@ -78,6 +88,74 @@ const RiskForm = () => {
 
     const setField = (key: keyof typeof form, value: string) => {
         setForm((prev) => ({ ...prev, [key]: value }))
+    }
+
+    const toInt = (v: string) => {
+        const n = Number(v)
+        if (!Number.isFinite(n)) return 0
+        return Math.trunc(n)
+    }
+
+    const buildPayload = () => ({
+        applicant: {
+            LIMIT_BAL: toInt(form.LIMIT_BAL),
+            SEX: toInt(form.SEX),
+            EDUCATION: toInt(form.EDUCATION),
+            MARRIAGE: toInt(form.MARRIAGE),
+            AGE: toInt(form.AGE),
+
+            PAY_0: toInt(form.PAY_0),
+            PAY_2: toInt(form.PAY_2),
+            PAY_3: toInt(form.PAY_3),
+            PAY_4: toInt(form.PAY_4),
+            PAY_5: toInt(form.PAY_5),
+            PAY_6: toInt(form.PAY_6),
+
+            BILL_AMT1: toInt(form.BILL_AMT1),
+            BILL_AMT2: toInt(form.BILL_AMT2),
+            BILL_AMT3: toInt(form.BILL_AMT3),
+            BILL_AMT4: toInt(form.BILL_AMT4),
+            BILL_AMT5: toInt(form.BILL_AMT5),
+            BILL_AMT6: toInt(form.BILL_AMT6),
+
+            PAY_AMT1: toInt(form.PAY_AMT1),
+            PAY_AMT2: toInt(form.PAY_AMT2),
+            PAY_AMT3: toInt(form.PAY_AMT3),
+            PAY_AMT4: toInt(form.PAY_AMT4),
+            PAY_AMT5: toInt(form.PAY_AMT5),
+            PAY_AMT6: toInt(form.PAY_AMT6),
+        },
+        include_explanations: true,
+    })
+
+    const handleSubmit = async () => {
+        setLoading(true)
+        setError(null)
+        setAssessment(null)
+
+        try {
+            const payload = buildPayload()
+            console.log("SENDING PAYLOAD 👉", payload)
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/score`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            })
+            if (!res.ok) {
+                const text = await res.text()
+                throw new Error(`API error ${res.status}: ${text}`)
+            }
+
+            const data = await res.json()
+            console.log("API RESPONSE 👉", data)
+            setAssessment(data)
+        }
+        catch (e: any) {
+            setError(e.message ?? "Something went wrong")
+        }
+        finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -160,8 +238,6 @@ const RiskForm = () => {
                             />
                         </Field>
                     </div>
-
-
                 </div>
                 {/* Repayment Status */}
                 <div className="mt-4">
@@ -208,63 +284,63 @@ const RiskForm = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2">
                         <Field>
                             <FieldLabel htmlFor="bill_amt_sept">Bill Amount - September</FieldLabel>
-                            <Input id="bill_amt_sept" placeholder="e.g., 2100" />
+                            <Input id="bill_amt_sept" type="number" placeholder="e.g., 2100" value={form.BILL_AMT1} onChange={(e) => setField("BILL_AMT1", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="bill_amt_aug">Bill Amount - August</FieldLabel>
-                            <Input id="bill_amt_aug" placeholder="e.g., 3200" />
+                            <Input id="bill_amt_aug" type="number" placeholder="e.g., 3200" value={form.BILL_AMT2} onChange={(e) => setField("BILL_AMT2", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="bill_amt_jul">Bill Amount - July</FieldLabel>
-                            <Input id="bill_amt_jul" placeholder="e.g., 2900" />
+                            <Input id="bill_amt_jul" type="number" placeholder="e.g., 2900" value={form.BILL_AMT3} onChange={(e) => setField("BILL_AMT3", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="bill_amt_jun">Bill Amount - June</FieldLabel>
-                            <Input id="bill_amt_jun" placeholder="e.g., 3100" />
+                            <Input id="bill_amt_jun" type="number" placeholder="e.g., 3100" value={form.BILL_AMT4} onChange={(e) => setField("BILL_AMT4", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="bill_amt_may">Bill Amount - May</FieldLabel>
-                            <Input id="bill_amt_may" placeholder="e.g., 3200" />
+                            <Input id="bill_amt_may" type="number" placeholder="e.g., 3200" value={form.BILL_AMT5} onChange={(e) => setField("BILL_AMT5", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="bill_amt_apr">Bill Amount - April</FieldLabel>
-                            <Input id="bill_amt_apr" placeholder="e.g., 3100" />
+                            <Input id="bill_amt_apr" type="number" placeholder="e.g., 3100" value={form.BILL_AMT6} onChange={(e) => setField("BILL_AMT6", e.target.value)} />
                         </Field>
                     </div>
                 </div>
-                {/* Bill Statement Amounts (£) */}
+                {/* pay Statement Amounts (£) */}
                 <div className="mt-4">
                     <h2 className='font-bold text-[#003d5c]'>Previous Payment Amounts (£)</h2>
                     <hr />
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-2">
                         <Field>
                             <FieldLabel htmlFor="pay_amt_sept">Previous Amount - September</FieldLabel>
-                            <Input id="pay_amt_sept" placeholder="e.g., 2100" />
+                            <Input id="pay_amt_sept" type="number" placeholder="e.g., 2100" value={form.PAY_AMT1} onChange={(e) => setField("PAY_AMT1", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="pay_amt_aug">Previous Amount - August</FieldLabel>
-                            <Input id="pay_amt_aug" placeholder="e.g., 3200" />
+                            <Input id="pay_amt_aug" type="number" placeholder="e.g., 3200" value={form.PAY_AMT2} onChange={(e) => setField("PAY_AMT2", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="pay_amt_jul">Previous Amount - July</FieldLabel>
-                            <Input id="pay_amt_jul" placeholder="e.g., 2900" />
+                            <Input id="pay_amt_jul" type="number" placeholder="e.g., 2900" value={form.PAY_AMT3} onChange={(e) => setField("PAY_AMT3", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="pay_amt_jun">Previous Amount - June</FieldLabel>
-                            <Input id="pay_amt_jun" placeholder="e.g., 3100" />
+                            <Input id="pay_amt_jun" type="number" placeholder="e.g., 3100" value={form.PAY_AMT4} onChange={(e) => setField("PAY_AMT4", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="pay_amt_may">Previous Amount - May</FieldLabel>
-                            <Input id="pay_amt_may" placeholder="e.g., 3200" />
+                            <Input id="pay_amt_may" type="number" placeholder="e.g., 3200" value={form.PAY_AMT5} onChange={(e) => setField("PAY_AMT5", e.target.value)} />
                         </Field>
                         <Field>
                             <FieldLabel htmlFor="pay_amt_apr">Previous Amount - April</FieldLabel>
-                            <Input id="pay_amt_apr" placeholder="e.g., 3100" />
+                            <Input id="pay_amt_apr" type="number" placeholder="e.g., 3100" value={form.PAY_AMT6} onChange={(e) => setField("PAY_AMT6", e.target.value)} />
                         </Field>
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <Button variant="default" className="bg-[#003d5c] w-[250px] mt-5 font-bold">Calculate Risk Score</Button>
+                    <Button variant="default" disabled={loading} onClick={handleSubmit} className="bg-[#003d5c] w-[250px] mt-5 font-bold">{loading ? "Calculating..." : "Calculate Risk Score"}</Button>
                 </div>
             </div>
         </div>
