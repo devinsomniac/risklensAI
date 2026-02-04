@@ -25,7 +25,7 @@ export default function Home() {
               loading = {loading}
           />
         </div>
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="mt-6 flex flex-col gap-5">
           <div>
             <Decision assessment={assessment} loading={loading} error={error} />
           </div>
